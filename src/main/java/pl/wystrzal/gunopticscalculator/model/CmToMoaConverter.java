@@ -1,5 +1,7 @@
 package pl.wystrzal.gunopticscalculator.model;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
 public class CmToMoaConverter {
@@ -36,7 +38,6 @@ public class CmToMoaConverter {
     public double deviationNotTOBeCorrectedInCentimeters(double deviationInMOA, double distanceInMeters){
         MoaToCmConverter moaToCmConverter = new MoaToCmConverter();
         double deviationInCm = moaToCmConverter.convertMoaToCm(deviationInMOA, distanceInMeters);
-        System.out.println(moaToCmConverter.convertMoaToCm(1,10000));
         return deviationInCm;
     }
 
@@ -45,14 +46,19 @@ public class CmToMoaConverter {
 
         Result result = new Result();
         result.setMoa(moa);
-        result.setMoaIn4ClickScale((double)convertMoaTo4ClickScale(moa));
+        result.setMoaIn4ClickScale(roundToDecimalPlaces(2,(double)convertMoaTo4ClickScale(moa)));
         result.setMoaIn8ClickScale((double)convertMoaTo8ClickScale(moa));
-        result.setDeviationInMOA4Clicks(deviationNotTOBeCorrectedInMOA4Clicks(cmShift, mDistance));
-        result.setDeviationInMOA8Clicks(deviationNotTOBeCorrectedInMOA8Clicks(cmShift, mDistance));
-        result.setDeviationInCentimeters4Clicks(deviationNotTOBeCorrectedInCentimeters(deviationNotTOBeCorrectedInMOA4Clicks(cmShift, mDistance),mDistance));
-        result.setDeviationInCentimeters8Clicks(deviationNotTOBeCorrectedInCentimeters(deviationNotTOBeCorrectedInMOA8Clicks(cmShift, mDistance),mDistance));
+        result.setDeviationInMOA4Clicks(roundToDecimalPlaces(2, deviationNotTOBeCorrectedInMOA4Clicks(cmShift, mDistance)));
+        result.setDeviationInMOA8Clicks(roundToDecimalPlaces(2, deviationNotTOBeCorrectedInMOA8Clicks(cmShift, mDistance)));
+        result.setDeviationInCentimeters4Clicks(roundToDecimalPlaces(3, deviationNotTOBeCorrectedInCentimeters(deviationNotTOBeCorrectedInMOA4Clicks(cmShift, mDistance),mDistance)));
+        result.setDeviationInCentimeters8Clicks(roundToDecimalPlaces(3, deviationNotTOBeCorrectedInCentimeters(deviationNotTOBeCorrectedInMOA8Clicks(cmShift, mDistance),mDistance)));
 
 
         return result;
+    }
+
+    public double roundToDecimalPlaces(int places, Double number){
+        return new BigDecimal(number.toString()).setScale(places, RoundingMode.HALF_UP).doubleValue();
+
     }
 }
