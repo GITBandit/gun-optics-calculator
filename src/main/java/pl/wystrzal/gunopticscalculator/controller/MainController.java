@@ -34,12 +34,16 @@ public class MainController {
 
         CmToMoaConverter cmToMoaConverter = new CmToMoaConverter();
 
-        Result result = cmToMoaConverter.getResult(deviation, distance);
+        try {
+            Result result = cmToMoaConverter.getResult(deviation, distance);
+            model.addAttribute("result", result);
+            model.addAttribute("deviation", deviation);
+            model.addAttribute("distance", distance);
+        } catch (NullPointerException e){
+            return "incorrect_values";
+        }
         /*  290.888208,10000);*/
 
-        model.addAttribute("result", result);
-        model.addAttribute("deviation", deviation);
-        model.addAttribute("distance", distance);
 
         return "index";
     }

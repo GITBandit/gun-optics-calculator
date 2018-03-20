@@ -6,13 +6,17 @@ import java.text.DecimalFormat;
 
 public class CmToMoaConverter {
 
-    public double convertCmToMoa(double cmShift, double mDistance){
+    public double convertCmToMoa(double cmShift, double mDistance) {
 
-        double perimeter = 2 * Math.PI * mDistance;
-        double minuteOfAngle = perimeter / 21600;
-        double shitfInMeters = cmShift / 100;
-        double result = shitfInMeters / minuteOfAngle;
-        return result;
+        if (cmShift == 0 || mDistance == 0) {
+            return 0;
+        } else {
+            double perimeter = 2 * Math.PI * mDistance;
+            double minuteOfAngle = perimeter / 21600;
+            double shitfInMeters = cmShift / 100;
+            double result = shitfInMeters / minuteOfAngle;
+            return result;
+        }
     }
 
     public int convertMoaTo4ClickScale(double moa){
@@ -58,6 +62,9 @@ public class CmToMoaConverter {
     }
 
     public double roundToDecimalPlaces(int places, Double number){
+        if(Double.isNaN(number)){
+            return 0;
+        }
         return new BigDecimal(number.toString()).setScale(places, RoundingMode.HALF_UP).doubleValue();
 
     }
