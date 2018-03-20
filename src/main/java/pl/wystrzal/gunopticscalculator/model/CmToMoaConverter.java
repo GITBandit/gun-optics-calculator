@@ -45,7 +45,7 @@ public class CmToMoaConverter {
         Double moa = convertCmToMoa(cmShift, mDistance);
 
         Result result = new Result();
-        result.setMoa(moa);
+        result.setMoa(roundToDecimalPlaces(2, moa));
         result.setMoaIn4ClickScale(roundToDecimalPlaces(2,(double)convertMoaTo4ClickScale(moa)));
         result.setMoaIn8ClickScale((double)convertMoaTo8ClickScale(moa));
         result.setDeviationInMOA4Clicks(roundToDecimalPlaces(2, deviationNotTOBeCorrectedInMOA4Clicks(cmShift, mDistance)));
