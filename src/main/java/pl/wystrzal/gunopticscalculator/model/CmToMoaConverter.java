@@ -50,8 +50,8 @@ public class CmToMoaConverter {
 
         Result result = new Result();
         result.setMoa(roundToDecimalPlaces(2, moa));
-        result.setMoaIn4ClickScale(roundToDecimalPlaces(2,(double)convertMoaTo4ClickScale(moa)));
-        result.setMoaIn8ClickScale((double)convertMoaTo8ClickScale(moa));
+        result.setMoaIn4ClickScale(convertMoaTo4ClickScale(moa));
+        result.setMoaIn8ClickScale(convertMoaTo8ClickScale(moa));
         result.setDeviationInMOA4Clicks(roundToDecimalPlaces(2, deviationNotTOBeCorrectedInMOA4Clicks(cmShift, mDistance)));
         result.setDeviationInMOA8Clicks(roundToDecimalPlaces(2, deviationNotTOBeCorrectedInMOA8Clicks(cmShift, mDistance)));
         result.setDeviationInCentimeters4Clicks(roundToDecimalPlaces(3, deviationNotTOBeCorrectedInCentimeters(deviationNotTOBeCorrectedInMOA4Clicks(cmShift, mDistance),mDistance)));

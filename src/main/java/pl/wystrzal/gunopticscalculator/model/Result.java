@@ -3,14 +3,14 @@ package pl.wystrzal.gunopticscalculator.model;
 public class Result {
 
     private double moa;
-    private double moaIn4ClickScale;
-    private double moaIn8ClickScale;
+    private int moaIn4ClickScale;
+    private int moaIn8ClickScale;
     private double deviationInMOA4Clicks;
     private double deviationInMOA8Clicks;
     private double deviationInCentimeters4Clicks;
     private double deviationInCentimeters8Clicks;
 
-    public Result(double moa, double moaIn4ClickScale, double moaIn8ClickScale, double deviationInMOA4Clicks, double deviationInMOA8Clicks, double deviationInCentimeters4Clicks, double deviationInCentimeters8Clicks) {
+    public Result(double moa, int moaIn4ClickScale, int moaIn8ClickScale, double deviationInMOA4Clicks, double deviationInMOA8Clicks, double deviationInCentimeters4Clicks, double deviationInCentimeters8Clicks) {
         this.moa = moa;
         this.moaIn4ClickScale = moaIn4ClickScale;
         this.moaIn8ClickScale = moaIn8ClickScale;
@@ -32,19 +32,19 @@ public class Result {
         this.moa = moa;
     }
 
-    public double getMoaIn4ClickScale() {
+    public int getMoaIn4ClickScale() {
         return moaIn4ClickScale;
     }
 
-    public void setMoaIn4ClickScale(double moaIn4ClickScale) {
+    public void setMoaIn4ClickScale(int moaIn4ClickScale) {
         this.moaIn4ClickScale = moaIn4ClickScale;
     }
 
-    public double getMoaIn8ClickScale() {
+    public int getMoaIn8ClickScale() {
         return moaIn8ClickScale;
     }
 
-    public void setMoaIn8ClickScale(double moaIn8ClickScale) {
+    public void setMoaIn8ClickScale(int moaIn8ClickScale) {
         this.moaIn8ClickScale = moaIn8ClickScale;
     }
 
